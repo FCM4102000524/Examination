@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TWILIGHT HOUSE</title>
+    <script src="script/aframe.js"></script>
+    <script src="script/ada-water.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!--assets-->
+        <a-assets>
+            <a-asset-item id="house" src="./New folder/scene.gltf"></a-asset-item>
+            <a-asset-item id="bird" src="./bird/scene.gltf"></a-asset-item>
+            <img src="Textures/pavement.jpg" id="pavement">
+            <img src="Textures/sky.jpg" id="sky">
+    
+        </a-assets>
+
+        <a-entity light="type: ambient; intensity: 0.08"></a-entity>
+        <a-entity light="type: directional; intensity:0.03" position="-0.5 1 1"></a-entity>
+        <!--house model-->
+        <a-entity gltf-model="#house">
+        <!--Bird-->
+          <a-entity rotaton="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing:linear">
+          <a-entity gltf-model="#bird" position="-2 23 13" rotation="0 90 -60"></a-entity>
+        </a-entity>    
+        </a-entity>
+       <!--Top floor light-->
+        <a-entity position="7 10.85 4" light="distance:10; intensity:3; color:blue; type:point; decay:2"></a-entity>
+        <a-entity position="7 10.85 12" light="distance:10; intensity:3; color:red; type:point; decay:2"></a-entity>
+        <a-entity position="-9 6.85 12" light="distance:12; intensity:8; color:white; type:point; decay:2"></a-entity>
+        <a-entity position="-11 10.85 20" light="distance:8; intensity:7; color:blue; type:point; decay:2"></a-entity>
+        <a-entity position="-14 10.85 18" light="distance:8; intensity:7; color:red; type:point; decay:2"></a-entity>
+        <!--Second and ground floor light-->
+        <a-entity position="-9 -3 12" light="distance:15; intensity:10; color:white; type:point; decay:2"></a-entity>
+        <a-entity position="7 -3 12" light="distance:15; intensity:10; color:white; type:point; decay:2"></a-entity>
+        <a-entity position="-14 -2 20" light="distance:8; intensity:10; color:white; type:point; decay:2"></a-entity>
+        <a-entity position="-14 3.35 23" light="distance:4; intensity:10; color:white; type:point; decay:2"></a-entity>
+        <a-entity position="7 -2 18" light="distance:15; intensity:8; color:white; type:point; decay:2"></a-entity>
+        <a-entity position="1 6 22" light="distance:8; intensity:8; color:white; type:point; decay:2"></a-entity>
+
+        <!--morning/afternoon clear sky -->
+        <a-sky color="#87CEEB"></a-sky>
+
+        <!--pavement-->
+        <a-plane rotation="-90 0 0" src="#pavement" repeat="10 10" position="0 -1 0"
+        scale="100 100"></a-plane>
+        <!--pool layer-->
+        <a-water
+        opacity="40"
+        side="double"
+        scale="0.34 0.31"
+        base-color="lightblue"
+        foam-color="blue"
+        voronoi-points="10"
+        rotation="90 0 0"
+        position="-13.2 6.85 24.4"
+      >
+      </a-water>
+        <!--camera primitive-->
+    <a-camera position="-12 8 45"></a-camera>
+    </a-scene>
+    <script>
+        document.querySelector("a-water").setAttribute("animation", {
+          property: "scale",
+          // from: "10 2 1",
+          // to: "2 15 2",
+          dur: 50,
+          loop: true,
+          dir: "alternate",
+          easing: "easeOutElastic",
+        });
+      </script>
+</body>
+</html>
